@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>editor</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="editor.css" />
+    <script src="https://unpkg.com/marked@0.3.6"></script>
+    <script src="https://unpkg.com/lodash@4.16.0"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="editor">
+        <textarea v-bind:value="input"  @input="update"></textarea>
+        <div v-html="updateEdite"></div>
+    </div>
+    <script>
+        // 将textarea中的value与vue实例的input属性绑定，然后利用方法将textarea中value值赋值给input属性
+        // 再利用computed的缓存，利用一个方法将获取到的input属性显示给div
+        new Vue({
+            el: "#editor",
+            data:{
+               input:'#hello'
+            },
+            computed:{
+                updateEdite:function(){
+                    return this.input;
+                }
+            },
+            methods:{
+            update: function(e){
+                   this.input = e.target.value;
+               }
+            }
+        })
+
+
+    </script>
+</body>
+</html>
